@@ -3,7 +3,7 @@ from peewee import *
 from playhouse.shortcuts import model_to_dict, dict_to_model
 
 db = PostgresqlDatabase(
-    "seinfeld", user="sherilynkoshy", password=12345, host="localhost", port=5432
+    "seinfeld", user="user", password="", host="localhost", port=5432
 )
 
 
