@@ -52,8 +52,8 @@ Character(
 app = Flask(__name__)
 
 
-@app.route("/character", methods=["GET", "POST"])
-@app.route("/character/<id>", methods=["GET", "PUT", "DELETE"])
+@app.route("/characters", methods=["GET", "POST"])
+@app.route("/characters/<id>", methods=["GET", "PUT", "DELETE"])
 def endpoint(id=None):
     if request.method == "GET":
         if id:
