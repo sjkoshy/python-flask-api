@@ -3,7 +3,7 @@ from peewee import *
 from playhouse.shortcuts import model_to_dict, dict_to_model
 
 db = PostgresqlDatabase(
-    "seinfeld", user="postgres", password="", host="localhost", port=5432
+    "seinfeld", user="sherilynkoshy", password=12345, host="localhost", port=5432
 )
 
 
@@ -57,7 +57,7 @@ app = Flask(__name__)
 def endpoint(id=None):
     if request.method == "GET":
         if id:
-            return jsonify(model_to_dict(Character.get_by_id(id)))
+            return jsonify(model_to_dict(Character.get(Character.id == id)))
     else:
         characters = []
         for character in Character.select():
@@ -67,16 +67,16 @@ def endpoint(id=None):
     if request.method == "PUT":
         body = request.get_json()
         Character.update(body).where(Character.id == id).execute()
-        return "Character {id} updated."
+        return f"Character {id} updated."
 
     if request.method == "POST":
         add_character = dict_to_model(Character, request.get_json())
         add_character.save()
-        return "Character {id} added."
+        return f"Character {id} added."
 
     if request.method == "DELETE":
         Character.delete().where(Character.id == id).execute()
-        return "Character {id} deleted."
+        return f"Character {id} deleted."
 
 
 app.run(port=5000, debug=True)
