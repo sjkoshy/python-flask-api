@@ -3,7 +3,7 @@ from peewee import *
 from playhouse.shortcuts import model_to_dict, dict_to_model
 
 db = PostgresqlDatabase(
-    "seinfeld", user="user", password="", host="localhost", port=5432
+    "seinfeld", user="sherilynkoshy", password="", host="localhost", port=5432
 )
 
 
@@ -50,6 +50,11 @@ Character(
 
 
 app = Flask(__name__)
+
+
+@app.route("/")
+def index():
+    return jsonify("This is the Seinfeld API.")
 
 
 @app.route("/characters", methods=["GET", "POST"])
